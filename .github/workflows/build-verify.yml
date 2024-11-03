@@ -98,5 +98,11 @@ jobs:
         run: |
           npm run tauri android init
           npm run tauri android build -- --aab
+          npm run tauri android build -- --apk
         env:
           NDK_HOME: "${{ env.ANDROID_HOME }}/ndk/${{ env.ANDROID_NDK_VERSION }}"
+          
+      - name: Download APK Debug - ${{ env.repository_name }}
+        uses: actions/download-artifact@v4.1.7
+        with:
+          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
